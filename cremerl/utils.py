@@ -7,6 +7,7 @@ import pytorch_lightning as pl
 from torch.utils.data import TensorDataset, DataLoader
 
 
+
 def load_model_from_checkpoint(model, checkpoint_path):
     """Load PyTorch lightning model from checkpoint."""
     return model.load_from_checkpoint(checkpoint_path,
