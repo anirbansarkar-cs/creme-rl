@@ -1,2 +1,3 @@
 from . import model_zoo
-from . import utils.py
+from . import utils
+from . import shuffle
