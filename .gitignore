@@ -94,6 +94,10 @@ ENV/
 
 # Data
 data/DeepSTARR_data.h5
+data/DeepSTARR_standard.ckpt
+
+# notebooks
+notebooks/
 
 # Archive
 archive/

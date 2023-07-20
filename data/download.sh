@@ -9,3 +9,5 @@
 
 # wget DeepSTARR dataset
 wget https://zenodo.org/record/7265991/files/DeepSTARR_data.h5
+# wget DeepSTARR standard model checkpoint
+wget https://www.dropbox.com/s/58stc2d1jk7gsap/DeepSTARR_standard.ckpt
