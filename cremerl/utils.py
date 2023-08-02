@@ -8,6 +8,20 @@ from torch.utils.data import TensorDataset, DataLoader
 
 
 
+def generate_tile_ranges(sequence_length, window_size, stride):
+    ranges = []
+    start = np.arange(0, sequence_length - window_size + stride, stride)
+
+    for s in start:
+        e = min(s + window_size, sequence_length)
+        ranges.append([s, e])
+
+    if start[-1] + window_size - stride < sequence_length:  # Adjust the last range
+        ranges[-1][1] = sequence_length
+
+    return ranges
+
+
 def load_model_from_checkpoint(model, checkpoint_path):
     """Load PyTorch lightning model from checkpoint."""
     return model.load_from_checkpoint(checkpoint_path,
