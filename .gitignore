@@ -98,6 +98,7 @@ data/DeepSTARR_standard.ckpt
 
 # notebooks
 # notebooks/
+**/lightning_logs/
 
 # Archive
 archive/
