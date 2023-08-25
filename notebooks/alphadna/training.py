@@ -37,7 +37,7 @@ standard_cnn = utils.load_model_from_checkpoint(standard_cnn, '../DeepSTARR_stan
 
 
 
-seqgame = env.SeqGame(data_module.x_train[1].numpy(), standard_cnn, num_trials=200)
+seqgame = env.SeqGame(data_module.x_train[1].numpy(), standard_cnn, num_trials=10)
 # model = CNN_v0(seqgame.action_size)
 model = models.CNN_v1(seqgame.action_size, num_resBlocks=3)
 
@@ -45,10 +45,10 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.0001)
 
 args = {
     'num_iterations': 5, # 3 
-    'num_selfPlay_iterations': 500, # 500
-    'num_parallel_games': 100,
-    'num_epochs': 8, # 4 
-    'batch_size': 64, # 64
+    'num_selfPlay_iterations': 1, # 500
+    'num_parallel_games': 1, # 10
+    'num_epochs': 1, # 4 
+    'batch_size': 4, # 64
     'rlop_patience': 80,
     'rlop_factor': 0.3,
     'rlop_minimum': 1e-7,

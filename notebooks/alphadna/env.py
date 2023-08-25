@@ -3,6 +3,7 @@ import pytorch_lightning as pl
 import torch
 import utils
 
+
 class SeqGame:
     def __init__(self, sequence, model_func, num_trials=10):
         self.seq = sequence
@@ -62,9 +63,6 @@ class SeqGame:
     
     def set_seq(self, seq):
         self.seq = seq
-        
-        if self.seq.shape[0]!=5:
-            self.seq = utils.extend_sequence(self.seq)
     
     def get_seq(self):
         return self.seq.copy()

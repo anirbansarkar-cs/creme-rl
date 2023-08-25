@@ -69,6 +69,8 @@ def get_batch_score(pred, trials):
     #print(np.max(score))
     return final
 
+
+
 def extend_sequence(one_hot_sequence):
     A, L = one_hot_sequence.shape
 
@@ -95,6 +97,7 @@ def taking_action(sequence_with_ones, tile_range):
 
     return np.array(modified_sequence, dtype='float32')
 
+
 def convert_elements(input_list):
     input_list = input_list.tolist()
     num_columns = 5  # Number of elements to process in each group
@@ -119,4 +122,3 @@ def convert_elements(input_list):
     output_list = output_array.flatten()
 
     return output_list
-

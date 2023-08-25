@@ -3,7 +3,7 @@ import torch.nn as nn
 import numpy as np
 import utils
 import mcts
-
+import gc
 
 class AlphaDNA:
     def __init__(self, model, optimizer, env, args, mcts_config = {
@@ -121,16 +121,16 @@ class AlphaDNA:
         for iteration in range(self.args['num_iterations']):
             # print(f"Iteration {iteration}:")
             memory = []
-            
+            gc.collect()
             self.model.eval()
             for selfPlay_iteration in range(self.args['num_selfPlay_iterations']):
-                # print(f"SelfPlay Iteration {selfPlay_iteration}")
-                memory += self.selfPlay()
+                print(f"Iteration {iteration} - SelfPlay Iteration {selfPlay_iteration}")
+                memory.append(self.selfPlay())
             
             self.model.train()
             for epoch in range(self.args['num_epochs']):
                 loss = self.train(memory)
-                print(f"Training Epoch {epoch+1} - Total Loss: {loss}")
+                print(f"Iteration {iteration} - Training Epoch {epoch+1} - Total Loss: {loss}")
                 
                 if loss < self.lowest_loss:
                     print("Saving the best model")
@@ -173,6 +173,7 @@ class AlphaDNA_P:
         self.env = env
         self.args = args
         self.mcts = mcts.MCTS_P(model, mcts_config)
+        self.lowest_loss = np.inf
         
         self.initial_sequence = env.get_seq()
 
@@ -257,7 +258,7 @@ class AlphaDNA_P:
             memory = []
             
             self.model.eval()
-            for selfPlay_iteration in range(self.args['num_selfPlay_iterations']):
+            for selfPlay_iteration in range(self.args['num_selfPlay_iterations'] // self.args['num_parallel_games']):
                 print(f"Iteration {iteration} - SelfPlay Iteration {selfPlay_iteration}")
                 memory += self.selfPlay()
             
