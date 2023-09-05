@@ -5,7 +5,7 @@ from scipy import stats
 import torch
 import pytorch_lightning as pl
 from torch.utils.data import TensorDataset, DataLoader
-import shuffle
+from . import shuffle
 
 
 
